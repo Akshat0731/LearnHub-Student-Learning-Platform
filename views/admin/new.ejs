@@ -1,0 +1,40 @@
+<%layout("/layouts/plain.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/admin-add-course.css">') %>
+
+  <div class="navbar">
+    <h2>Add New Course</h2>
+    <button onclick="window.location.href='/admin/dashboard'">Back to Dashboard</button>
+  </div>
+
+  <div class="container">
+    <h2>New Course Details</h2>
+    <form id="courseForm" action="/admin/courses" method="POST">
+      <label for="title">Course Title</label>
+      <input type="text" id="title" name="title" placeholder="Enter course title" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" placeholder="Enter course description" required></textarea>
+
+      <label for="videoId">YouTube Video ID (if single video)</label>
+      <input type="text" id="videoId" name="youtube_video_id" placeholder="e.g. dQw4w9WgXcQ">
+
+      <label for="playlistId">YouTube Playlist ID (if playlist)</label>
+      <input type="text" id="playlistId" name="youtube_playlist_id" placeholder="e.g. PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG">
+
+      <label for="videoCount">Number of Videos (default 1 for single video)</label>
+      <input type="number" id="videoCount" name="video_count" min="1" value="1">
+
+      <label for="imageUrl">Course Image URL</label>
+      <input type="text" id="imageUrl" name="image_url" placeholder="Enter image URL" required>
+
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">-- Select category --</option>
+        <% for(let c of categories){ %>
+          <option value="<%= c %>"><%= c %></option>
+        <% } %>
+      </select>
+
+      <button type="submit" class="submit-btn">Add Course</button>
+    </form>
+  </div>

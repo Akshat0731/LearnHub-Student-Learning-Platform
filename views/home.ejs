@@ -1,0 +1,95 @@
+<%layout("/layouts/boilerplate.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/home.css">') %>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Learn From <span>Experts</span> Anytime, Anywhere!</h2>
+      <p>Join LearnHub and unlock thousands of interactive online courses designed to empower your career and enhance your skills.</p>
+      <button onclick="window.location.href='/login'">Get Started</button>
+    </div>
+    <img src="/images/OnlineLearning.png" alt="Online Learning">
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2>Why Choose LearnHub?</h2>
+    <div class="feature-container">
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Expert Tutors">
+        <h3>Expert Tutors</h3>
+        <p>Learn from industry professionals who bring real-world experience to every class.</p>
+      </div>
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Flexible Learning">
+        <h3>Flexible Learning</h3>
+        <p>Access your courses anytime, from any device — your learning, your way.</p>
+      </div>
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920344.png" alt="Certificates">
+        <h3>Certificates</h3>
+        <p>Earn certificates for completed courses to showcase your skills and achievements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses" id="courses">
+    <h2>Popular Courses</h2>
+    <div class="course-container">
+      <div class="course">
+        <img src="/images/full-stack-web-development.jpg" alt="Web Dev">
+        <div class="course-info">
+          <h3>Full Stack Web Development</h3>
+          <p>Master HTML, CSS, JS, and backend frameworks to become a complete developer.</p>
+        </div>
+      </div>
+      <div class="course">
+        <img src="/images/data-science.jpg" alt="Data Science">
+        <div class="course-info">
+          <h3>Data Science & AI</h3>
+          <p>Analyze data, train ML models, and use AI to solve real-world challenges.</p>
+        </div>
+      </div>
+      <div class="course">
+        <img src="/images/graphic-designing.jpeg" alt="Graphic Design">
+        <div class="course-info">
+          <h3>Graphic Design Masterclass</h3>
+          <p>Design stunning visuals and user interfaces with Figma and Adobe tools.</p>
+        </div>
+      </div>
+      <div class="course">
+        <img src="/images/cyber-security.jpeg" alt="Cyber Security">
+        <div class="course-info">
+          <h3>Cyber Security Basics</h3>
+          <p>Learn how to protect networks, devices, and data from cyber threats.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>About LearnHub</h3>
+        <p>LearnHub is your gateway to world-class learning experiences. We bring expert instructors, modern tools, and engaging content to help you succeed.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#courses">Courses</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: <a>support@learnHub.com</a></p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: Surat, India</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 LearnHub | Designed with ❤️ by Team LearnHub
+    </div>
+  </footer>

@@ -1,0 +1,16 @@
+<%layout("/layouts/boilerplate.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/feedback.css">') %>
+  <div class="container">
+    <h2>Submit Your Feedback</h2>
+    <form id="feedbackForm" action="/courses/<%= course._id %>/feedback" method="POST">
+      <label for="rating">Rating (1 to 5)</label>
+      <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+      <label for="feedbackText">Feedback</label>
+      <textarea id="feedbackText" name="feedback" rows="5" placeholder="Write your feedback..." required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+<%- include("../includes/footer.ejs") %>

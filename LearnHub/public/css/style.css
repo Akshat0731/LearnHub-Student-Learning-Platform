@@ -1,0 +1,45 @@
+/* Flash messages (success / error) shown after a form is submitted */
+.flash-container {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  width: min(92%, 460px);
+}
+
+.flash {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.flash-success {
+  background: #e8f7ee;
+  color: #1e7a46;
+  border: 1px solid #bfe6cf;
+}
+
+.flash-error {
+  background: #fdecec;
+  color: #b02a2a;
+  border: 1px solid #f5c2c2;
+}
+
+.flash button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}

@@ -1,0 +1,32 @@
+<%layout("/layouts/boilerplate.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/contact.css">') %>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you! Get in touch for support, feedback, or partnership inquiries.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <div class="contact-form">
+      <h3>Send Us a Message</h3>
+      <form id="contactForm" action="/contact" method="POST">
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <input type="text" id="subject" name="subject" placeholder="Subject" required />
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p><i>📍</i> 123 Edu Street, Knowledge City, India</p>
+      <p><i>📞</i> +91 98765 43210</p>
+      <p><i>📧</i> support@learnhub.com</p>
+      <h3>Follow Us</h3>
+      <p>🌐 Facebook | Twitter | Instagram | LinkedIn</p>
+    </div>
+  </section>
+
+<%- include("includes/footer.ejs") %>

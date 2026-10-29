@@ -1,0 +1,25 @@
+<header>
+  <h1>LearnHub</h1>
+  <div class="menu-icon" id="menuIcon">☰</div>
+  <nav id="navbar">
+    <a href="/">Home</a>
+    <a href="/#features">Features</a>
+    <a href="/courses">Courses</a>
+    <a href="/contact">Contact</a>
+
+    <% if(currUser){ %>
+      <div id="userSection" class="user-info" style="display: flex;">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon">
+        <a href="<%= currUser.role === 'admin' ? '/admin/dashboard' : '/student/dashboard' %>" id="userName" class="user-link"><%= currUser.name %></a>
+        <form action="/logout" method="POST" class="logout-form">
+          <button type="submit" id="logoutBtn">Logout</button>
+        </form>
+      </div>
+    <% } else { %>
+      <div id="authLinks" style="display: flex;">
+        <a href="/login" class="btn">Login</a>
+        <a href="/register" class="btn">Register</a>
+      </div>
+    <% } %>
+  </nav>
+</header>

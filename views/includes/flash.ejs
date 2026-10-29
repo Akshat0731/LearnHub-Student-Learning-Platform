@@ -1,0 +1,10 @@
+<% if((typeof success !== "undefined" && success.length) || (typeof error !== "undefined" && error.length)){ %>
+  <div class="flash-container">
+    <% if(typeof success !== "undefined"){ for(let msg of success){ %>
+      <div class="flash flash-success" role="alert"><span><%= msg %></span><button type="button" aria-label="Close">&times;</button></div>
+    <% }} %>
+    <% if(typeof error !== "undefined"){ for(let msg of error){ %>
+      <div class="flash flash-error" role="alert"><span><%= msg %></span><button type="button" aria-label="Close">&times;</button></div>
+    <% }} %>
+  </div>
+<% } %>

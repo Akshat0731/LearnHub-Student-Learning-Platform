@@ -1,0 +1,36 @@
+<%layout("/layouts/boilerplate.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/course-detail.css">') %>
+  <div class="container" id="courseContainer">
+    <h2><%= course.title %></h2>
+    <img src="<%= course.image_url %>" alt="<%= course.title %>" style="width:100%;max-height:400px;object-fit:cover;border-radius:12px;margin-bottom:20px;">
+    <p><%= course.description %></p>
+    <p><strong>Total Videos:</strong> <%= course.video_count %></p>
+    <% if(embedUrl){ %>
+      <iframe src="<%= embedUrl %>" allowfullscreen></iframe>
+    <% }else{ %>
+      <p>No video content available.</p>
+    <% } %>
+    <form action="/courses/<%= course._id %>/enroll" method="POST" style="display:inline;">
+      <button type="submit" class="btn" id="enrollBtn">Enroll Now</button>
+    </form>
+    <a href="/courses/<%= course._id %>/feedback" class="btn">Feedback</a>
+
+    <div class="feedback-section" id="feedbackSection">
+      <h3>What Students Say</h3>
+      <div id="feedbackList">
+        <% if(feedbacks.length === 0){ %>
+          <span>No feedback available yet.</span>
+        <% } %>
+        <% for(let fb of feedbacks){ %>
+          <div class="feedback-card">
+            <strong><%= fb.user ? fb.user.name : "Deleted user" %></strong>
+            <small>(<%= fb.rating %> ★)</small>
+            <h5><%= fb.comment %></h5>
+            <small>Posted on <%= new Date(fb.submitted_at).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}) %></small>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+<%- include("../includes/footer.ejs") %>

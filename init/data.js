@@ -33,7 +33,7 @@ const courses = [
     {
         title:"Machine Learning Essentials",
         description:"A friendly introduction to machine learning: supervised learning, neural networks and real examples.",
-        category:"Data Science",
+        category:"AI & ML",
         youtube_video_id:"i_LwzRVP7bg",
         youtube_playlist_id:"",
         video_count:1,
@@ -42,7 +42,7 @@ const courses = [
     {
         title:"Data Science with SQL",
         description:"Query, join and analyse data with SQL - the first tool every data scientist needs.",
-        category:"Data Science",
+        category:"Data Analytics",
         youtube_video_id:"HXV3zeQKqGY",
         youtube_playlist_id:"",
         video_count:1,
@@ -51,7 +51,7 @@ const courses = [
     {
         title:"Cyber Security & Ethical Hacking",
         description:"Understand how attackers think and how to protect systems, networks and websites.",
-        category:"Cyber Security",
+        category:"Other",
         youtube_video_id:"3Kq1MIfTWCE",
         youtube_playlist_id:"",
         video_count:1,

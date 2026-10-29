@@ -1,0 +1,7 @@
+<%layout("/layouts/plain.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/error.css">') %>
+  <div class="box">
+    <h1><%= status %></h1>
+    <p><%= message %></p>
+    <a href="/">Back to Home</a>
+  </div>

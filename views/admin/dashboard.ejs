@@ -1,0 +1,79 @@
+<%layout("/layouts/plain.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/admin-dashboard.css">') %>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h2>LearnHub Admin Dashboard</h2>
+    <form action="/logout" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+
+  <div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Admin Controls</h3>
+      <button onclick="window.location.href='/admin/courses/new'">Add New Course</button>
+      <button onclick="window.location.href='/admin/users'">View All Users</button>
+      <button onclick="window.location.href='/admin/courses'">View All Courses</button>
+      <button onclick="window.location.href='/admin/contacts'">Contacts</button>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+      <!-- Stats cards (real numbers from the database) -->
+      <div class="card-grid">
+        <div class="card">
+          <h4>Total Users</h4>
+          <p id="totalUsers"><%= stats.totalUsers %></p>
+          <button onclick="window.location.href='/admin/users'">View Users</button>
+        </div>
+        <div class="card">
+          <h4>Total Courses</h4>
+          <p id="totalCourses"><%= stats.totalCourses %></p>
+          <button onclick="window.location.href='/admin/courses'">View Courses</button>
+        </div>
+        <div class="card">
+          <h4>Active Enrollments</h4>
+          <p id="activeEnrollments"><%= stats.activeEnrollments %></p>
+          <button onclick="window.location.href='/admin/courses'">View Enrollments</button>
+        </div>
+      </div>
+
+      <!-- Chart: Enrollments Over Time -->
+      <div class="chart-container">
+        <h4>Weekly Enrollment Trends</h4>
+        <canvas id="enrollChart" height="150"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Weekly enrollments (last 5 weeks), straight from the database
+    const weekly = <%- JSON.stringify(stats.weekly).replace(/</g, "\\u003c") %>;
+
+    new Chart(document.getElementById('enrollChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: weekly.map(w => new Date(w.weekStart).toLocaleDateString(undefined, { day: 'numeric', month: 'short' })),
+        datasets: [{
+          label: 'Enrollments',
+          data: weekly.map(w => w.count),
+          fill: true,
+          backgroundColor: 'rgba(255, 140, 0, 0.2)',
+          borderColor: 'rgba(255, 102, 0, 0.8)',
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+      }
+    });
+  </script>

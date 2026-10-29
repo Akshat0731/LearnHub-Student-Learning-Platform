@@ -1,0 +1,131 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: #fff9f5;
+  color: #333;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: linear-gradient(90deg, #ff8c00, #ff6600);
+  padding: 15px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar h2 { margin: 0; }
+.navbar button {
+  padding: 8px 18px;
+  background: #fff;
+  color: #ff6600;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.navbar button:hover {
+  background: #ff751a;
+  color: #fff;
+  border:1px solid #fff;
+}
+
+/* Dashboard container */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 30px;
+  padding: 40px 10%;
+}
+
+/* Sidebar */
+.sidebar {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(255, 102, 0, 0.15);
+}
+.sidebar h3 {
+  color: #ff6600;
+  margin-bottom: 20px;
+}
+.sidebar button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  background: linear-gradient(90deg, #ff8c00, #ff6600);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.sidebar button:hover {
+  background: #ff751a;
+  transform: translateY(-2px);
+}
+
+/* Main content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(255,102,0,0.15);
+  text-align: center;
+  transition: all 0.3s;
+}
+.card h4 {
+  color: #ff6600;
+  margin-bottom: 12px;
+}
+.card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+.card button {
+  background: linear-gradient(90deg, #ff8c00, #ff6600);
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.card button:hover {
+  background: #ff751a;
+  transform: translateY(-2px);
+}
+
+/* Charts section */
+.chart-container {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(255,102,0,0.15);
+}
+
+@media(max-width: 900px){
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}

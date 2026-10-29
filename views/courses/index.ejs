@@ -1,0 +1,27 @@
+<%layout("/layouts/boilerplate.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/courses.css">') %>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Explore Our Popular Courses</h2>
+    <p>Upgrade your skills with our expert-led online courses — Learn anytime, anywhere!</p>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses">
+    <h3>Our Featured Courses</h3>
+    <div class="course-grid" id="courseGrid">
+      <% if(courses.length === 0){ %>
+        <p>No courses found. </p>
+      <% } %>
+      <% for(let course of courses){ %>
+        <div class="course-card">
+          <img src="<%= course.image_url %>" alt="<%= course.title %>">
+          <div class="course-info">
+            <h4><%= course.title %></h4>
+            <p><%= course.description %></p>
+            <a href="/courses/<%= course._id %>" class="enroll-btn">View Details</a>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </section>

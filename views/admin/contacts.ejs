@@ -1,0 +1,32 @@
+<%layout("/layouts/plain.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/admin-table.css">') %>
+
+<div class="navbar">
+  <h2>All Contacts</h2>
+  <button onclick="window.location.href='/admin/dashboard'">Back to Dashboard</button>
+</div>
+
+<div class="container" id="contactsContainer">
+  <h2>Registered Contacts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Messages</th>
+      </tr>
+    </thead>
+    <tbody id="contactsTableBody">
+      <% if(contacts.length === 0){ %>
+        <tr><td colspan="4">No contacts found</td></tr>
+      <% } %>
+      <% for(let contact of contacts){ %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.message %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

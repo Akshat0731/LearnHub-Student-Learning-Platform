@@ -1,0 +1,52 @@
+<%layout("/layouts/plain.ejs")-%>
+<% block("head", '<link rel="stylesheet" href="/css/student-dashboard.css">') %>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h2>LearnHub Student Dashboard</h2>
+    <div>
+      <button id="allCoursesBtn" onclick="window.location.href='/courses'">All Courses</button>
+      <form action="/logout" method="POST" style="display:inline;">
+        <button type="submit" id="logoutBtn">Logout</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <!-- Profile -->
+    <div class="profile-card">
+      <img src="/images/profile.jpg" alt="Profile Image" class="profile-img">
+      <div class="profile-info">
+        <h3 id="studentName"><%= currUser.name %></h3>
+        <p id="studentEmail"><%= currUser.email %></p>
+      </div>
+      <div class="profile-stats">
+        <div class="stat"><h4 id="coursesCount"><%= stats.enrolled %></h4><p>Enrolled</p></div>
+        <div class="stat"><h4 id="completedCount"><%= stats.completed %></h4><p>Completed</p></div>
+        <div class="stat"><h4 id="overallProgress"><%= stats.overall %>%</h4><p>Progress</p></div>
+      </div>
+    </div>
+
+    <!-- Enrolled Courses -->
+    <div class="courses-section">
+      <h3>Your Courses</h3>
+      <div class="course-grid" id="enrolledCourses">
+        <% if(enrollments.length === 0){ %>
+          <p style="color:#666; text-align:center; font-weight:500;">
+            You haven’t enrolled in any courses yet.<br>
+            <a href="/courses" style="color:#ff6600; text-decoration:underline;">Browse Courses</a>
+          </p>
+        <% } %>
+        <% for(let e of enrollments){ %>
+          <div class="course-card">
+            <h4><%= e.course.title %></h4>
+            <p><%= e.course.description %></p>
+            <div class="progress-bar" style="width:<%= e.progress || 0 %>%"></div>
+            <p><strong><%= e.progress || 0 %>% Completed</strong></p>
+            <button onclick="window.location.href='/courses/<%= e.course._id %>'">
+              View Course
+            </button>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>

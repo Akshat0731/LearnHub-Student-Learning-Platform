@@ -1,37 +1,22 @@
 const Feedback = require("../models/feedback.js");
 const Course = require("../models/course.js");
 const ExpressError = require("../utils/ExpressError");
-const {isValidId} = require("../middleware.js");
 
-module.exports.create = async (req,res)=>{
-    let {course_id,rating,feedback} = req.body;
-    if(!(await Course.exists({_id:course_id}))){
+module.exports.newForm = async (req,res)=>{
+    let course = await Course.findById(req.params.id);
+    if(!course){
         throw new ExpressError(404,"Course not found");
     }
-    await Feedback.create({
-        user:req.session.user.user_id,
-        course:course_id,
-        rating,
-        comment:feedback,
-    });
-    res.status(201).json({status:"success",message:"Feedback submitted successfully"});
+    res.render("feedback/new.ejs",{title:"Course Feedback | LearnHub",course});
 }
 
-module.exports.index = async (req,res)=>{
-    let {course_id} = req.query;
-    if(!isValidId(course_id)){
-        return res.json({status:"success",feedbacks:[]});
+module.exports.create = async (req,res)=>{
+    let {id} = req.params;
+    let {rating,feedback} = req.body;
+    if(!(await Course.exists({_id:id}))){
+        throw new ExpressError(404,"Course not found");
     }
-
-    let rows = await Feedback.find({course:course_id})
-        .sort({submitted_at:-1})
-        .populate("user","name");
-
-    let feedbacks = rows.map((f)=>({
-        rating:f.rating,
-        comment:f.comment,
-        submitted_at:f.submitted_at,
-        user_name:f.user ? f.user.name : "Deleted user",
-    }));
-    res.json({status:"success",feedbacks});
+    await Feedback.create({user:req.session.user.user_id,course:id,rating,comment:feedback});
+    req.flash("success","Thank you! Your feedback has been submitted.");
+    res.redirect(`/courses/${id}`);
 }

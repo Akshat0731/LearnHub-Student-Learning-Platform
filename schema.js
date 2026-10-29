@@ -47,6 +47,11 @@ module.exports.courseSchema = Joi.object({
     youtube_playlist_id : Joi.string().trim().allow("").default(""),
     video_count : Joi.number().integer().min(1).empty("").default(1),
     image_url : Joi.string().trim().allow("").default(""),
+}).custom((course,helpers)=>{
+    if(!course.youtube_video_id && !course.youtube_playlist_id){
+        return helpers.message("Please enter either a YouTube Video ID or a Playlist ID.");
+    }
+    return course;
 }).messages({
     "any.required":"All required fields must be filled",
     "string.empty":"All required fields must be filled",
@@ -66,23 +71,34 @@ module.exports.enrollmentSchema = Joi.object({
     }),
 });
 
-module.exports.feedbackSchema = Joi.object({
-    course_id : objectId.required().messages({
-        "string.hex":"Invalid course",
-        "string.length":"Invalid course",
-    }),
+const ratingFields = {
     rating : Joi.number().integer().min(1).max(5).required().messages({
         "number.base":"Invalid course or rating (1-5)",
         "number.integer":"Invalid course or rating (1-5)",
         "number.min":"Invalid course or rating (1-5)",
         "number.max":"Invalid course or rating (1-5)",
     }),
-    feedback : Joi.string().trim().required(),   // the frontend sends the text as "feedback"
-}).messages({
+    feedback : Joi.string().trim().required(),   // the text is called "feedback" in the form and the API
+};
+const feedbackMessages = {
     "any.required":"Missing required fields",
     "string.empty":"Missing required fields",
     "string.base":"Missing required fields",
-});
+};
+
+// API: the course id comes in the body
+module.exports.feedbackSchema = Joi.object({
+    course_id : objectId.required().messages({
+        "string.hex":"Invalid course",
+        "string.length":"Invalid course",
+    }),
+    ...ratingFields,
+}).messages(feedbackMessages);
+
+// Website form: the course id comes from the url (/courses/:id/feedback)
+module.exports.feedbackFormSchema = Joi.object({
+    ...ratingFields,
+}).messages(feedbackMessages);
 
 module.exports.feedbackQuerySchema = Joi.object({
     course_id : Joi.string().trim().required(),
